@@ -18,4 +18,10 @@ actor DBank {
     Debug.print(debug_show(currentValue));
   };
 
+  // public function fro users to withdraw amount from currentValue
+  public func withdraw(amount: Nat) {
+    // deccrease currentValue by the amount
+    currentValue -= amount;
+    Debug.print(debug_show(currentValue));
+  }
 }
