@@ -9,6 +9,13 @@ actor DBank {
 
   let id = 82394723828341084;
 
-  Debug.print(debug_show(currentValue));
-  Debug.print(debug_show(id));
+  // Debug.print(debug_show(currentValue));
+  // Debug.print(debug_show(id));
+
+  // public function for user to deposit money
+  public func topUp(amount: Nat) {
+    currentValue += amount;
+    Debug.print(debug_show(currentValue));
+  };
+
 }
