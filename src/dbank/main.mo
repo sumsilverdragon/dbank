@@ -18,10 +18,16 @@ actor DBank {
     Debug.print(debug_show(currentValue));
   };
 
-  // public function fro users to withdraw amount from currentValue
+  // public function for users to withdraw amount from currentValue
   public func withdraw(amount: Nat) {
-    // deccrease currentValue by the amount
-    currentValue -= amount;
-    Debug.print(debug_show(currentValue));
+    // decrease currentValue by the amount
+    let tempValue: Int = currentValue - amount;
+    if (tempValue >= 0) {
+      currentValue -= amount;
+      Debug.print(debug_show(currentValue));
+    } else {
+      Debug.print("Amount too large, currentValue less than zero.")
+    }
+    
   }
 }
