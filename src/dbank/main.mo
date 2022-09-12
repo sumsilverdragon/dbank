@@ -1,11 +1,16 @@
 // import module to debug(print)
 import Debug "mo:base/Debug";
+// import time module
+import Time "mo:base/Time";
 
 // class that holds canister
 actor DBank {
   //holds current value of money in this bank > stable=persistent state ORTHOGONAL PERSISTENCE
   stable var currentValue: Nat = 300;
   
+  // constant start time value > nanonseconds since Jan1970
+  let startTime = Time.now();
+  Debug.print(debug_show(startTime));
 
   let id = 82394723828341084;
 
