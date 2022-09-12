@@ -3,9 +3,9 @@ import Debug "mo:base/Debug";
 
 // class that holds canister
 actor DBank {
-  //holds current value of money in this bank
-  var currentValue = 300;
-  currentValue := 100;
+  //holds current value of money in this bank > stable=persistent state ORTHOGONAL PERSISTENCE
+  stable var currentValue: Nat = 300;
+  
 
   let id = 82394723828341084;
 
