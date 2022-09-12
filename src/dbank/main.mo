@@ -2,11 +2,13 @@
 import Debug "mo:base/Debug";
 // import time module
 import Time "mo:base/Time";
+//float module
+import Float "mo:base/Float";
 
 // class that holds canister
 actor DBank {
   //holds current value of money in this bank > stable=persistent state ORTHOGONAL PERSISTENCE
-  stable var currentValue: Nat = 300;
+  stable var currentValue: Float = 300;
   
   // constant start time value > nanonseconds since Jan1970
   let startTime = Time.now();
@@ -18,15 +20,15 @@ actor DBank {
   // Debug.print(debug_show(id));
 
   // public function for user to deposit money
-  public func topUp(amount: Nat) {
+  public func topUp(amount: Float) {
     currentValue += amount;
     Debug.print(debug_show(currentValue));
   };
 
   // public function for users to withdraw amount from currentValue
-  public func withdraw(amount: Nat) {
+  public func withdraw(amount: Float) {
     // decrease currentValue by the amount
-    let tempValue: Int = currentValue - amount;
+    let tempValue: Float = currentValue - amount;
     if (tempValue >= 0) {
       currentValue -= amount;
       Debug.print(debug_show(currentValue));
@@ -37,7 +39,20 @@ actor DBank {
   };
 
   //query function with return value: async loading
-  public query func checkBalance(): async Nat {
+  public query func checkBalance(): async Float {
     return currentValue;
   };
+
+  //function to update compound interest
+  public func compound() {
+    // current moment in time
+    let currentTime = Time.now();
+    // elapsed time
+    let timeElapsedNS = currentTime - startTime;
+    // convert NS to seconds
+    let timeElapsedS = timeWlapsedNS / 1000000000;
+    // replace currentValue with added compund interest
+    currentValue := currentValue * (1.01 ** Float.timeElapsedS);
+  };
+
 }
