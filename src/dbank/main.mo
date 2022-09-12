@@ -9,10 +9,13 @@ import Float "mo:base/Float";
 actor DBank {
   //holds current value of money in this bank > stable=persistent state ORTHOGONAL PERSISTENCE
   stable var currentValue: Float = 300;
-  
+  currentValue := 300;
+  Debug.print(debug_show(currentValue));
+
   // stable start time value > nanonseconds since Jan1970
   stable var startTime = Time.now();
-  // Debug.print(debug_show(startTime));
+  startTime := Time.now();
+  Debug.print(debug_show(startTime));
 
   let id = 82394723828341084;
 
