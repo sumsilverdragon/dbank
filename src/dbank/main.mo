@@ -29,5 +29,10 @@ actor DBank {
       Debug.print("Amount too large, currentValue less than zero.")
     }
     
-  }
+  };
+
+  //query function with return value: async loading
+  public query func checkBalance(): async Nat {
+    return currentValue;
+  };
 }
