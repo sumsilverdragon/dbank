@@ -10,9 +10,9 @@ actor DBank {
   //holds current value of money in this bank > stable=persistent state ORTHOGONAL PERSISTENCE
   stable var currentValue: Float = 300;
   
-  // constant start time value > nanonseconds since Jan1970
-  let startTime = Time.now();
-  Debug.print(debug_show(startTime));
+  // stable start time value > nanonseconds since Jan1970
+  stable var startTime = Time.now();
+  // Debug.print(debug_show(startTime));
 
   let id = 82394723828341084;
 
@@ -50,9 +50,11 @@ actor DBank {
     // elapsed time
     let timeElapsedNS = currentTime - startTime;
     // convert NS to seconds
-    let timeElapsedS = timeWlapsedNS / 1000000000;
+    let timeElapsedS = timeElapsedNS / 1000000000;
     // replace currentValue with added compund interest
-    currentValue := currentValue * (1.01 ** Float.timeElapsedS);
+    currentValue := currentValue * (1.01 ** Float.fromInt(timeElapsedS));
+    // reset startTime
+    startTime := currentTime;
   };
 
 }
